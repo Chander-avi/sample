@@ -86,6 +86,11 @@ jobs:
       
       # Optional: Add real deployment using an action
       # - name: Deploy to Vercel
+            - name: Validate JSON config
+        run: |
+          echo "🔍 Validating index.json..."
+          node -e "console.log(JSON.parse(require('fs').readFileSync('index.json')))"
+          echo "✅ JSON is valid!"
       #   uses: amondnet/vercel-action@v25
       #   with:
       #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
