@@ -1,0 +1,13 @@
+{
+  "appName": "CI/CD Demo",
+  "version": "1.0.0",
+  "environment": "development",
+  "features": {
+    "logging": true,
+    "analytics": false
+  },
+  "ports": {
+    "http": 8080,
+    "https": 443
+  }
+}
