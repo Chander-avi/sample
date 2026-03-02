@@ -57,7 +57,7 @@ jobs:
   # ─── CD STAGE: Deploy (Demo) ───
   deploy-demo:
     name: Deploy to Demo Environment
-    needs: build-and-test  # Only run if build/test succeeds
+    needs: build-and-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
@@ -76,23 +76,14 @@ jobs:
       - name: Build for production
         run: npm run build --if-present
 
-      # 🎯 Demo deployment: Just echo a success message
-      # Replace with real deployment (Vercel, AWS, GitHub Pages, etc.)
       - name: Deploy to demo environment
         run: |
           echo "🚀 Deploying to demo environment..."
           echo "✅ Deployment successful! (Demo mode)"
           echo "🔗 Demo URL: https://your-app-demo.example.com"
-      
-      # Optional: Add real deployment using an action
-      # - name: Deploy to Vercel
-            - name: Validate JSON config
+
+      - name: Validate JSON config
         run: |
           echo "🔍 Validating index.json..."
           node -e "console.log(JSON.parse(require('fs').readFileSync('index.json')))"
           echo "✅ JSON is valid!"
-      #   uses: amondnet/vercel-action@v25
-      #   with:
-      #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
-      #     vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-      #     vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
